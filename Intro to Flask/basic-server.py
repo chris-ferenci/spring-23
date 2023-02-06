@@ -20,6 +20,7 @@ def create():
 def read(id):
     # Code to retrieve a resource
     return f"Resource with id {id} retrieved!"
+    
 
 # Define a route for the "update" endpoint
 @app.route("/update/<id>", methods=["PUT"])
@@ -35,5 +36,5 @@ def delete(id):
 
 # python3 -m flask --app webserver run --host=0.0.0.0 --port=5050
 
-# if __name__ == '__main__':
-#     app.run(debug=True, host='0.0.0.0', port=8000)
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5050)
