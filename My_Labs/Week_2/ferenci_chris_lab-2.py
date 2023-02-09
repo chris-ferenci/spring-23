@@ -12,32 +12,60 @@ def index():
 
 @app.route("/add/<num1>/<num2>", methods=["GET"])
 def add(num1, num2):
-    result = int(num1) + int(num2)
-    # return f"{num1} + {num2}"
-    return f"The answer is {result}"
+
+    if num1.isalpha() and num2.isalpha():
+        return f"Invalid Input, please enter an integer or float"
+    elif "." in num1 or "." in num2:
+        result = float(num1) + float(num2)
+    else:
+        result = int(num1) + int(num2)
+
+    return f"{result}"
 
 
 # Define a route for the "read" endpoint
 @app.route("/sub/<num1>/<num2>", methods=["GET"])
 def sub(num1, num2):
-    result = int(num1) - int(num2)
-    # return f"{num1} + {num2}"
-    return f"The answer is {result}"
+    if num1.isalpha() and num2.isalpha():
+        return f"Invalid Input, please enter an integer or float"
+    elif "." in num1 or "." in num2:
+        result = float(num1) - float(num2)
+    else:
+        result = int(num1) - int(num2)
+
+    return f"{result}"
     
 
 # Define a route for the "update" endpoint
 @app.route("/mul/<num1>/<num2>", methods=["POST"])
 def mul(num1, num2):
-    # Code to update a resource
-    result = int(num1) * int(num2)
-    return f"The answer is {result}"
+    if num1.isalpha() and num2.isalpha():
+        return f"Invalid Input, please enter an integer or float"
+    elif "." in num1 or "." in num2:
+        result = float(num1) * float(num2)
+    else:
+        result = int(num1) * int(num2)
+
+    return f"{result}"
 
 # Define a route for the "delete" endpoint
 @app.route("/div/<num1>/<num2>", methods=["POST"])
 def div(num1, num2):
     # Code to delete a resource
-    result = int(num1) / int(num2)
-    return f"The answer is {result}"
+    if num1.isalpha() and num2.isalpha():
+        return f"Invalid Input, please enter an integer or float"
+    elif "." in num1 or "." in num2:
+        result = float(num1) / float(num2)
+    else:
+        result = int(num1) / int(num2)
+
+    return f"{result}"
+
+
+@app.errorhandler(500)
+def internal_error(error):
+
+    return "You broke it! Try make sure you enter either /add, /sub, /mul, or /div to your path."
 
 
 if __name__ == '__main__':
